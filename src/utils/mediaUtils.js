@@ -38,15 +38,13 @@ export const getThumbnailUrl = (work) => {
     return work.thumbnail_url || work.file_url;
   }
 
-  // 3. 웹툰, 동화책 등의 외부 링크 업로드 시 임시 제목 썸네일 제공 (글씨 깨짐 방지를 위해 영어 단어 추가)
+  // 3. 웹툰, 동화책 등의 외부 링크 업로드 시 임시 제목 썸네일 제공 (한글 폰트 깨짐 방지를 위해 영어 전용 사용)
   if (!work.thumbnail_url || !imgPattern.test(work.thumbnail_url)) {
-    const safeTitle = encodeURIComponent(work.title?.substring(0, 8) || '미디어');
-    
     if (work.category === 'WEBTOON') {
-      return `https://placehold.co/600x600/7C3AED/FFFFFF/png?font=Noto_Sans&text=${safeTitle}...\n(WEBTOON)`;
+      return `https://placehold.co/600x600/7C3AED/FFFFFF/png?font=Montserrat&text=WEBTOON`;
     }
     if (work.category === 'EBOOK') {
-      return `https://placehold.co/600x600/F59E0B/FFFFFF/png?font=Noto_Sans&text=${safeTitle}...\n(E-BOOK)`;
+      return `https://placehold.co/600x600/F59E0B/FFFFFF/png?font=Montserrat&text=E-BOOK`;
     }
   }
 
