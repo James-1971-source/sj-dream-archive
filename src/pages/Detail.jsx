@@ -283,8 +283,15 @@ const Detail = () => {
 
     return (
       <div className="generic-content-view">
-         <img src={work.thumbnail_url || work.file_url} alt={work.title} className="content-img" />
-         <a href={work.file_url} target="_blank" rel="noopener noreferrer" className="view-full-btn">작품 전체 보기</a>
+         <img 
+           src={getThumbnailUrl(work)} 
+           alt={work.title} 
+           className="content-img" 
+           onError={handleImageError} 
+         />
+         <a href={work.file_url} target="_blank" rel="noopener noreferrer" className="view-full-btn">
+           새 창에서 작품 전체 보기
+         </a>
       </div>
     );
   };

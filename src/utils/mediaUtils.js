@@ -38,9 +38,19 @@ export const getThumbnailUrl = (work) => {
     return work.thumbnail_url || work.file_url;
   }
 
-  // 3. 음악 카테고리이거나 이미지가 없는 경우 -> ID 기반 고정 이미지 할당
-  // TIP: 나중에 로컬 이미지를 사용하려면 /public/defaults/music1.jpg 식으로 준비하고 
-  // 아래 리스트에 해당 경로를 추가하면 됩니다.
+  // 3. 웹툰, 동화책 등의 외부 링크 업로드 시 임시 제목 썸네일 제공 (글씨 깨짐 방지를 위해 영어 단어 추가)
+  if (!work.thumbnail_url || !imgPattern.test(work.thumbnail_url)) {
+    const safeTitle = encodeURIComponent(work.title?.substring(0, 8) || '미디어');
+    
+    if (work.category === 'WEBTOON') {
+      return `https://placehold.co/600x600/7C3AED/FFFFFF/png?font=Noto_Sans&text=${safeTitle}...\n(WEBTOON)`;
+    }
+    if (work.category === 'EBOOK') {
+      return `https://placehold.co/600x600/F59E0B/FFFFFF/png?font=Noto_Sans&text=${safeTitle}...\n(E-BOOK)`;
+    }
+  }
+
+  // 4. 음악 카테고리이거나 구버전 이미지가 없는 경우 -> ID 기반 고정 레트로 이미지 할당
   const seed = String(work.id || work.title || 'sj-archive');
   let hash = 0;
   for (let i = 0; i < seed.length; i++) {
