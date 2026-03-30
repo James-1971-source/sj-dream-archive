@@ -1,0 +1,5 @@
+import React from 'react';
+import './variables.css';
+import '../index.css';
+
+// index.css를 초기화하거나 내용을 variables.css를 포함하도록 수정할 수도 있습니다.

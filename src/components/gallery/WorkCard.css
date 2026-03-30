@@ -1,0 +1,99 @@
+.work-card {
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.work-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-thumb {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background-color: #f1f5f9; /* 여백 배경색 추가 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-thumb img, 
+.card-video-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* cover에서 contain으로 변경 */
+  transition: transform 0.5s ease;
+}
+
+/* 이미지 에러 시 플레이스홀더 스타일 */
+.card-thumb.image-error::after {
+  content: '🎵';
+  font-size: 3rem;
+  opacity: 0.3;
+}
+
+.work-card:hover .card-thumb img {
+  transform: scale(1.1);
+}
+
+.type-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-main);
+  /* Truncate text */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.author-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  overflow: hidden;
+}
+
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author-name {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}

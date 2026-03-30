@@ -1,0 +1,48 @@
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: #1e293b;
+  background-color: #f8fafc; /* 앱의 전체 기본 배경색 지정 */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #0f172a;
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* 폼 요소의 기본 텍스트 색상을 검정/어두운 회색 계열로 강제 */
+input, select, textarea {
+  color: #1e293b !important;
+}
+
+::placeholder {
+  color: #94a3b8 !important;
+}

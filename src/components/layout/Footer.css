@@ -1,0 +1,166 @@
+.footer {
+  background-color: #F8FAFC; /* 더 밝고 깨끗한 배경색 */
+  padding: 100px 0 60px;
+  border-top: 1px solid #E2E8F0;
+  margin-top: 120px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  flex-wrap: wrap;
+  gap: 60px;
+}
+
+.footer-brand {
+  max-width: 400px; /* 브랜드 영역 너비 제한으로 균형 확보 */
+}
+
+.footer-logo {
+  margin-bottom: 28px;
+}
+
+.footer-logo-img {
+  height: 52px; /* 로고 시인성 강화 */
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo-img:hover {
+  transform: translateY(-2px);
+}
+
+.footer-desc {
+  color: #334155; /* 더 깊이 있는 가독성 색상 */
+  font-size: 1.1rem; /* 크기 약간 확대 */
+  font-weight: 700; /* 요청하신 대로 더 두껍고 명확하게 */
+  line-height: 1.7;
+  letter-spacing: -0.02em; /* 세련된 자간 조절 */
+  word-break: keep-all; /* 한글 가독성 최적화 */
+}
+
+.footer-links-group {
+  display: flex;
+  gap: 100px;
+}
+
+.footer-links h4 {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 28px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links ul li {
+  margin-bottom: 16px;
+}
+
+.footer-links ul li a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #64748B;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.footer-links ul li a:hover {
+  color: var(--primary-color);
+  padding-left: 4px; /* 섬세한 인터랙션 */
+}
+
+.social-icons {
+  display: flex;
+  gap: 18px;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background-color: white;
+  border-radius: 50%;
+  color: #64748B;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-icons a:hover {
+  color: white;
+  background-color: var(--primary-color);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.footer-bottom {
+  padding-top: 40px;
+  border-top: 1px solid #E2E8F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #94A3B8;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.footer-policy {
+  display: flex;
+  gap: 32px;
+}
+
+.footer-policy a {
+  color: #94A3B8;
+  transition: color 0.2s;
+}
+
+.footer-policy a:hover {
+  color: var(--primary-color);
+}
+
+@media (max-width: 1024px) {
+  .footer-links-group {
+    gap: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 60px 0 40px;
+  }
+  
+  .footer-top {
+    flex-direction: column;
+    gap: 50px;
+  }
+  
+  .footer-brand {
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .footer-logo {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-links-group {
+    gap: 30px;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+  }
+}
