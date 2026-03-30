@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Upload as UploadIcon, X, ChevronDown, Rocket, Loader2, Globe, Lock, Link as LinkIcon, FileUp } from 'lucide-react';
+import { Upload as UploadIcon, X, ChevronDown, Rocket, Loader2, Globe, Lock, Link as LinkIcon, FileUp, Image as ImageIcon } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { getYoutubeVideoId, getYoutubeThumbnail } from '../utils/mediaUtils';
 import './Upload.css';
@@ -11,6 +11,7 @@ const Upload = () => {
   const [uploadMethod, setUploadMethod] = useState('file'); // 'file' or 'link'
   const [linkUrl, setLinkUrl] = useState('');
   const [file, setFile] = useState(null);
+  const [thumbnailFile, setThumbnailFile] = useState(null);
   const [formData, setFormData] = useState({
     category: '',
     title: '',
@@ -89,6 +90,25 @@ const Upload = () => {
         if (videoId) {
           finalThumbnailUrl = getYoutubeThumbnail(videoId);
         }
+      }
+
+      // 커스텀 썸네일 업로드 처리 (사용자가 직접 첨부한 경우 최우선 덮어쓰기)
+      if (thumbnailFile) {
+        const thumbExt = thumbnailFile.name.split('.').pop();
+        const thumbName = `thumb_${Date.now()}_${Math.random().toString(36).substring(2, 9)}.${thumbExt}`;
+        const thumbPath = `thumbnails/${thumbName}`;
+        
+        const { error: thumbUploadError } = await supabase.storage
+          .from('works-storage')
+          .upload(thumbPath, thumbnailFile);
+          
+        if (thumbUploadError) throw thumbUploadError;
+        
+        const { data: { publicUrl: thumbPublicUrl } } = supabase.storage
+          .from('works-storage')
+          .getPublicUrl(thumbPath);
+          
+        finalThumbnailUrl = thumbPublicUrl;
       }
 
       // 현재 로그인된 사용자 정보 가져오기
@@ -215,6 +235,26 @@ const Upload = () => {
               value={formData.description}
               onChange={(e) => setFormData({...formData, description: e.target.value})}
             ></textarea>
+          </div>
+
+          <div className="form-group" style={{ background: '#f8fafc', padding: '16px', borderRadius: '12px', border: '1px dashed #cbd5e1', marginTop: '10px' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+              <ImageIcon size={18} color="#64748b" /> 작품 대표 표지(썸네일) 첨부 <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 'normal' }}>(선택)</span>
+            </label>
+            <p style={{ fontSize: '0.85rem', color: '#64748b', marginBottom: '12px' }}>
+              메인 갤러리 카드에 노출될 예쁜 커버 이미지를 직접 업로드할 수 있습니다. (미첨부 시 기본 테마 표지 제공)
+            </p>
+            <input 
+              type="file" 
+              accept="image/*"
+              onChange={(e) => {
+                if(e.target.files && e.target.files[0]) {
+                  setThumbnailFile(e.target.files[0]);
+                }
+              }}
+              style={{ width: '100%', fontSize: '0.9rem', cursor: 'pointer' }}
+            />
+            {thumbnailFile && <p style={{ marginTop: '8px', color: '#10b981', fontSize: '0.85rem', fontWeight: '600' }}>✓ {thumbnailFile.name} 첨부 완료!</p>}
           </div>
 
           <div className="form-group">

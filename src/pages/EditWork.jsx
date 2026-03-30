@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Save, Loader2, Link as LinkIcon, AlertTriangle } from 'lucide-react';
+import { Save, Loader2, Link as LinkIcon, AlertTriangle, Image as ImageIcon } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { getYoutubeVideoId, getYoutubeThumbnail } from '../utils/mediaUtils';
 import './Upload.css'; // 빠른 스타일 공유를 위해 Upload CSS 차용
@@ -12,6 +12,7 @@ const EditWork = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [work, setWork] = useState(null);
+  const [thumbnailFile, setThumbnailFile] = useState(null);
   const [formData, setFormData] = useState({
     category: '',
     title: '',
@@ -87,6 +88,25 @@ const EditWork = () => {
         newThumbnail = getYoutubeThumbnail(isYoutube);
       } else if (formData.file_url !== work.file_url && !isYoutube && formData.category === 'VIDEO') {
         newThumbnail = null; // 비디오인데 유튜브가 아니면 썸네일 초기화
+      }
+
+      // 커스텀 썸네일 교체 처리
+      if (thumbnailFile) {
+        const thumbExt = thumbnailFile.name.split('.').pop();
+        const thumbName = `thumb_${Date.now()}_${Math.random().toString(36).substring(2, 9)}.${thumbExt}`;
+        const thumbPath = `thumbnails/${thumbName}`;
+        
+        const { error: thumbUploadError } = await supabase.storage
+          .from('works-storage')
+          .upload(thumbPath, thumbnailFile);
+          
+        if (thumbUploadError) throw thumbUploadError;
+        
+        const { data: { publicUrl: thumbPublicUrl } } = supabase.storage
+          .from('works-storage')
+          .getPublicUrl(thumbPath);
+          
+        newThumbnail = thumbPublicUrl;
       }
 
       // 만약 기존 URL이 스토리지 파일이었는데 새로운 외부 링크로 덮어씌우는 경우 (스토리지 공간 반환)
@@ -188,6 +208,26 @@ const EditWork = () => {
               value={formData.description}
               onChange={(e) => setFormData({...formData, description: e.target.value})}
             ></textarea>
+          </div>
+
+          <div className="form-group" style={{ background: '#f8fafc', padding: '16px', borderRadius: '12px', border: '1px dashed #cbd5e1', marginBottom: '20px' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+              <ImageIcon size={18} color="#64748b" /> 새 커스텀 썸네일 표지로 교체 <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 'normal' }}>(선택)</span>
+            </label>
+            <p style={{ fontSize: '0.85rem', color: '#64748b', marginBottom: '12px' }}>
+              새로운 표지 이미지를 첨부하면 갤러리 썸네일이 즉시 완전히 덮어씌워집니다. 기존 표지를 그대로 유지하려면 비워두시면 됩니다.
+            </p>
+            <input 
+              type="file" 
+              accept="image/*"
+              onChange={(e) => {
+                if(e.target.files && e.target.files[0]) {
+                  setThumbnailFile(e.target.files[0]);
+                }
+              }}
+              style={{ width: '100%', fontSize: '0.9rem', cursor: 'pointer' }}
+            />
+            {thumbnailFile && <p style={{ marginTop: '8px', color: '#10b981', fontSize: '0.85rem', fontWeight: '600' }}>✓ {thumbnailFile.name} 선택됨 (변경사항 저장 시 동시 적용됨)</p>}
           </div>
 
           <button className="submit-btn" type="submit" disabled={saving}>
