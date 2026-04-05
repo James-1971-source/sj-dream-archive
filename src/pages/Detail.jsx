@@ -429,7 +429,7 @@ const Detail = () => {
               {otherWorks.length > 0 ? otherWorks.map(other => (
                 <div key={other.id} className="related-item" onClick={() => navigate(`/work/${other.id}`)}>
                   <div className="related-thumb">
-                    <img src={other.thumbnail_url || 'https://via.placeholder.com/100'} alt={other.title} />
+                    <img src={getThumbnailUrl(other)} alt={other.title} onError={handleImageError} />
                   </div>
                   <div className="related-info">
                     <h5>{other.title}</h5>
