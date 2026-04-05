@@ -216,7 +216,8 @@ const AdminDashboard = () => {
 
   const filteredUsers = users.filter(user => 
     user.name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    user.id?.toLowerCase().includes(searchQuery.toLowerCase())
+    user.id?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    user.email?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const filteredWorks = works.filter(work => 
@@ -386,6 +387,7 @@ const AdminDashboard = () => {
                 <thead>
                   <tr>
                     <th>회원명</th>
+                    <th>이메일</th>
                     <th>권한</th>
                     <th>가입일</th>
                     <th>상태</th>
@@ -401,6 +403,7 @@ const AdminDashboard = () => {
                         </div>
                         <span>{user.name || '미설정'}</span>
                       </td>
+                      <td className="email-cell">{user.email || '이메일 없음'}</td>
                       <td><span className={`role-badge ${user.role}`}>{user.role}</span></td>
                       <td>{new Date(user.created_at).toLocaleDateString()}</td>
                       <td><span className="status-dot online">●</span> Active</td>
