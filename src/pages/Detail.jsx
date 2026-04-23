@@ -124,6 +124,13 @@ const Detail = () => {
   };
 
   const handleLike = async () => {
+    if (!currentUser) {
+      if (window.confirm('로그인이 필요한 기능입니다. 로그인 하시겠습니까?')) {
+        navigate('/login');
+      }
+      return;
+    }
+
     if (hasLiked) {
       alert('이미 응원(좋아요)을 누르셨습니다.');
       return;
@@ -146,6 +153,13 @@ const Detail = () => {
   };
 
   const handleFollow = async () => {
+    if (!currentUser) {
+      if (window.confirm('로그인이 필요한 기능입니다. 로그인 하시겠습니까?')) {
+        navigate('/login');
+      }
+      return;
+    }
+
     if (hasFollowed) {
       alert('이미 팔로우 중입니다.');
       return;
