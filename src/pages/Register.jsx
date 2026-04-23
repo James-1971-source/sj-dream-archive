@@ -34,7 +34,7 @@ const Register = () => {
 
       if (error) throw error;
       
-      alert('회원가입이 완료되었습니다! 이메일 인증을 확인해 주세요 (이메일 인증이 활성화되어 있는 경우).');
+      alert('회원가입이 완료되었습니다. 가입시 입력하신 정보로 로그인 하시기 바랍니다');
       navigate('/login');
     } catch (error) {
       alert(`회원가입 실패: ${error.message}`);
