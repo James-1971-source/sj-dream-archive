@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import EventPopup from './components/EventPopup';
 import Home from './pages/Home';
 import About from './pages/About';
 import Upload from './pages/Upload';
@@ -17,6 +18,7 @@ import './App.css';
 function App() {
   return (
     <div className="app">
+      <EventPopup />
       <Navbar />
       <main className="main-content">
         <Routes>
@@ -37,3 +39,4 @@ function App() {
 }
 
 export default App;
+
