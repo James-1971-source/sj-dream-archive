@@ -87,21 +87,25 @@ export default function EventPopup() {
           {/* 시상 내역 */}
           <p style={styles.sectionLabel}>🎁 시상 내역</p>
           <div style={styles.prizeList}>
-            <div style={{ ...styles.prizeRow, ...styles.prizeGold }}>
-              <span style={styles.prizeIcon}>🥇</span>
-              <span style={{ ...styles.prizeRank, color: "#7a5800" }}>1등 (1명)</span>
-              <span style={{ ...styles.prizeAmount, color: "#7a5800" }}>상금 10만원</span>
+            {/* 1등, 2등, 3등 가로 배열 */}
+            <div style={styles.prizeGrid}>
+              <div style={{ ...styles.prizeCol, ...styles.prizeGold }}>
+                <span style={styles.prizeIcon}>🥇</span>
+                <span style={{ ...styles.prizeRankCol, color: "#7a5800" }}>1등 (1명)</span>
+                <span style={{ ...styles.prizeAmountCol, color: "#7a5800" }}>상금 10만원</span>
+              </div>
+              <div style={{ ...styles.prizeCol, ...styles.prizeSilver }}>
+                <span style={styles.prizeIcon}>🥈</span>
+                <span style={{ ...styles.prizeRankCol, color: "#4f5b66" }}>2등 (1명)</span>
+                <span style={{ ...styles.prizeAmountCol, color: "#4f5b66" }}>상금 5만원</span>
+              </div>
+              <div style={{ ...styles.prizeCol, ...styles.prizeBronze }}>
+                <span style={styles.prizeIcon}>🥉</span>
+                <span style={{ ...styles.prizeRankCol, color: "#7e5233" }}>3등 (1명)</span>
+                <span style={{ ...styles.prizeAmountCol, color: "#7e5233" }}>상금 3만원</span>
+              </div>
             </div>
-            <div style={{ ...styles.prizeRow, ...styles.prizeSilver }}>
-              <span style={styles.prizeIcon}>🥈</span>
-              <span style={{ ...styles.prizeRank, color: "#4f5b66" }}>2등 (1명)</span>
-              <span style={{ ...styles.prizeAmount, color: "#4f5b66" }}>상금 5만원</span>
-            </div>
-            <div style={{ ...styles.prizeRow, ...styles.prizeBronze }}>
-              <span style={styles.prizeIcon}>🥉</span>
-              <span style={{ ...styles.prizeRank, color: "#7e5233" }}>3등 (1명)</span>
-              <span style={{ ...styles.prizeAmount, color: "#7e5233" }}>상금 3만원</span>
-            </div>
+            {/* 참가자 전원 */}
             <div style={{ ...styles.prizeRow, ...styles.prizeAll, flexDirection: "column", alignItems: "stretch", gap: 4 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <span style={styles.prizeIcon}>🎀</span>
@@ -161,13 +165,14 @@ const styles = {
     borderRadius: 20,
     maxWidth: 440,
     width: "100%",
-    overflow: "hidden",
+    maxHeight: "90vh",
+    overflowY: "auto",
     boxShadow: "0 8px 40px rgba(0,0,0,0.18)",
     fontFamily: "'Inter', 'Noto Sans KR', sans-serif",
   },
   header: {
     background: "#1a5fa8",
-    padding: "1.75rem 2rem 1.5rem",
+    padding: "1.25rem 1.5rem 1rem",
     textAlign: "center",
   },
   headerBadge: {
@@ -175,38 +180,38 @@ const styles = {
     fontWeight: "bold",
     color: "#ffd54f", // 골드 색상으로 헤더의 'SPECIAL EVENT'를 강조
     letterSpacing: 2,
-    margin: "0 0 8px",
+    margin: "0 0 6px",
   },
   headerTitle: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 700,
     color: "#ffffff",
-    margin: "0 0 8px",
+    margin: "0 0 6px",
   },
   headerSub: {
-    fontSize: 13,
+    fontSize: 12,
     color: "#cce4f7",
     margin: 0,
   },
   body: {
-    padding: "1.5rem 1.5rem",
+    padding: "1.25rem 1.25rem",
   },
   dateRow: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
-    gap: 12,
-    marginBottom: "1.25rem",
+    gap: 10,
+    marginBottom: "1rem",
   },
   dateBoxBlue: {
     background: "#f0f6ff",
     borderRadius: 12,
-    padding: "12px 14px",
+    padding: "10px 12px",
     borderLeft: "3px solid #1a5fa8",
   },
   dateBoxOrange: {
     background: "#fff3e0",
     borderRadius: 12,
-    padding: "12px 14px",
+    padding: "10px 12px",
     borderLeft: "3px solid #e67e22",
   },
   dateLabel: {
@@ -239,14 +244,14 @@ const styles = {
     fontSize: 12,
     fontWeight: 600,
     color: "#b37d14", // 차분하고 고급스러운 골드/브라운 톤
-    marginBottom: 8,
+    marginBottom: 6,
   },
   criteriaRow: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     gap: 4,
-    marginBottom: "0.75rem",
+    marginBottom: "0.5rem",
   },
   plusSign: {
     fontSize: 18,
@@ -273,15 +278,30 @@ const styles = {
     fontSize: 11,
     color: "#666",
     textAlign: "center",
-    marginTop: -8,
-    marginBottom: "1.25rem",
+    marginTop: -4,
+    marginBottom: "1rem",
     fontWeight: 500,
   },
   prizeList: {
     display: "flex",
     flexDirection: "column",
     gap: 6,
-    marginBottom: "1.25rem",
+    marginBottom: "1rem",
+  },
+  prizeGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: 6,
+  },
+  prizeCol: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 4,
+    borderRadius: 10,
+    padding: "10px 4px",
+    border: "1px solid transparent",
+    textAlign: "center",
   },
   prizeRow: {
     display: "flex",
@@ -319,23 +339,33 @@ const styles = {
     fontWeight: 600,
     whiteSpace: "nowrap",
   },
+  prizeRankCol: {
+    fontSize: 11,
+    fontWeight: 600,
+    whiteSpace: "nowrap",
+  },
+  prizeAmountCol: {
+    fontSize: 12,
+    fontWeight: 700,
+    whiteSpace: "nowrap",
+  },
   infoBox: {
     background: "#eef5fc",
     borderRadius: 10,
     padding: "10px 14px",
-    marginBottom: "1.25rem",
+    marginBottom: "1rem",
     fontSize: 11,
     color: "#1a5fa8",
     lineHeight: 1.6,
   },
   ctaButton: {
     width: "100%",
-    padding: "13px",
+    padding: "11px",
     background: "#1a5fa8",
     color: "#fff",
     border: "none",
     borderRadius: 12,
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: 600,
     cursor: "pointer",
     boxShadow: "0 4px 12px rgba(26, 95, 168, 0.2)",
@@ -346,7 +376,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     gap: 12,
-    marginTop: 15,
+    marginTop: 12,
     fontSize: 12,
     color: "#888",
   },
