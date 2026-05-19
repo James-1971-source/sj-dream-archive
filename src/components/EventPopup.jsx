@@ -63,19 +63,26 @@ export default function EventPopup() {
           </div>
 
           {/* 시상 기준 */}
-          <p style={styles.sectionLabel}>🏆 시상 기준 (총 3개 부문)</p>
+          <p style={styles.sectionLabel}>🏆 시상 기준</p>
           <div style={styles.criteriaRow}>
-            {[
-              { icon: "👀", text: "조회수\n많은 작품" },
-              { icon: "💬", text: "댓글\n많은 작품" },
-              { icon: "❤️", text: "좋아요\n많은 작품" },
-            ].map((item) => (
-              <div key={item.icon} style={styles.criteriaBox}>
-                <span style={{ fontSize: 22 }}>{item.icon}</span>
-                <p style={styles.criteriaText}>{item.text}</p>
-              </div>
-            ))}
+            <div style={styles.criteriaBox}>
+              <span style={{ fontSize: 22 }}>👀</span>
+              <p style={styles.criteriaText}>조회수</p>
+            </div>
+            <div style={styles.plusSign}>+</div>
+            <div style={styles.criteriaBox}>
+              <span style={{ fontSize: 22 }}>💬</span>
+              <p style={styles.criteriaText}>댓글</p>
+            </div>
+            <div style={styles.plusSign}>+</div>
+            <div style={styles.criteriaBox}>
+              <span style={{ fontSize: 22 }}>❤️</span>
+              <p style={styles.criteriaText}>좋아요</p>
+            </div>
           </div>
+          <p style={styles.criteriaNote}>
+            ※ '조회수 + 댓글 + 좋아요' 수를 합산해서 1위~3위까지 시상
+          </p>
 
           {/* 시상 내역 */}
           <p style={styles.sectionLabel}>🎁 시상 내역</p>
@@ -95,14 +102,19 @@ export default function EventPopup() {
               <span style={{ ...styles.prizeRank, color: "#7e5233" }}>3등 (1명)</span>
               <span style={{ ...styles.prizeAmount, color: "#7e5233" }}>상금 3만원</span>
             </div>
-            <div style={{ ...styles.prizeRow, ...styles.prizeAll }}>
-              <span style={styles.prizeIcon}>🎀</span>
-              <span style={{ ...styles.prizeRank, color: "#2d6e2d" }}>
-                작품 등록자 전원
-              </span>
-              <span style={{ ...styles.prizeAmount, color: "#2d6e2d" }}>
-                편의점 상품권 5천원
-              </span>
+            <div style={{ ...styles.prizeRow, ...styles.prizeAll, flexDirection: "column", alignItems: "stretch", gap: 4 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={styles.prizeIcon}>🎀</span>
+                <span style={{ ...styles.prizeRank, color: "#2d6e2d" }}>
+                  작품 등록자 전원
+                </span>
+                <span style={{ ...styles.prizeAmount, color: "#2d6e2d" }}>
+                  편의점 상품권 5천원
+                </span>
+              </div>
+              <div style={{ fontSize: 10, color: "#558b2f", paddingLeft: 28, lineHeight: 1.4 }}>
+                (시상자 제외, 작품 수와 상관없이 작품 등록자에게 상품권 1개만 지급)
+              </div>
             </div>
           </div>
 
@@ -230,10 +242,16 @@ const styles = {
     marginBottom: 8,
   },
   criteriaRow: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: 8,
-    marginBottom: "1.25rem",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 4,
+    marginBottom: "0.75rem",
+  },
+  plusSign: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#888",
   },
   criteriaBox: {
     background: "#f8f9fa",
@@ -241,6 +259,7 @@ const styles = {
     padding: "10px 6px",
     textAlign: "center",
     border: "1px solid #e9ecef",
+    flex: 1,
   },
   criteriaText: {
     fontSize: 11,
@@ -248,6 +267,14 @@ const styles = {
     lineHeight: 1.4,
     margin: "6px 0 0",
     whiteSpace: "pre-line",
+    fontWeight: 500,
+  },
+  criteriaNote: {
+    fontSize: 11,
+    color: "#666",
+    textAlign: "center",
+    marginTop: -8,
+    marginBottom: "1.25rem",
     fontWeight: 500,
   },
   prizeList: {
