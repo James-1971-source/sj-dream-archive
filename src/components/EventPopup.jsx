@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function EventPopup() {
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const STORAGE_KEY = "sj_event_popup_closed_date";
@@ -34,104 +36,57 @@ export default function EventPopup() {
 
         {/* 헤더 */}
         <div style={styles.header}>
-          <p style={styles.headerBadge}>✨ SPECIAL EVENT ✨</p>
-          <h2 style={styles.headerTitle}>🌟 드림 스타 챌린지</h2>
-          <p style={styles.headerSub}>S&amp;J 드림 아카이브 × 관람객 응원 이벤트</p>
+          <p style={styles.headerBadge}>🏆 AWARDS ANNOUNCEMENT 🏆</p>
+          <h2 style={styles.headerTitle}>🌟 드림 스타 챌린지 결과 발표</h2>
+          <p style={styles.headerSub}>청소년 창작자들의 꿈을 빛내줄 수상작이 발표되었습니다!</p>
         </div>
 
         {/* 본문 */}
         <div style={styles.body}>
 
-          {/* 기간 + 수상자 발표 */}
-          <div style={styles.dateRow}>
-            <div style={styles.dateBoxBlue}>
-              <p style={styles.dateLabel}>🗓️ 이벤트 기간</p>
-              <p style={styles.dateValue}>
-                5월 20일
-                <br />
-                ~ 5월 31일
-              </p>
-            </div>
-            <div style={styles.dateBoxOrange}>
-              <p style={styles.dateLabelOrange}>🏅 수상자 발표</p>
-              <p style={styles.dateValueOrange}>
-                6월 10일 (금)
-                <br />
-                사이트 공지
-              </p>
-            </div>
+          {/* 축하 안내 박스 */}
+          <div style={styles.infoBox}>
+            🎉 <strong>축하합니다!</strong> 관람객 여러분들의 따뜻한 댓글과 응원 투표(조회수, 좋아요, 댓글)를 집계하여 선정된 영광의 <strong>1등~3등 수상작</strong> 및 <strong>참가자 명단</strong>이 지금 바로 공개되었습니다!
           </div>
-
-          {/* 시상 기준 */}
-          <p style={styles.sectionLabel}>🏆 시상 기준</p>
-          <div style={styles.criteriaRow}>
-            <div style={styles.criteriaBox}>
-              <span style={{ fontSize: 22 }}>👀</span>
-              <p style={styles.criteriaText}>조회수</p>
-            </div>
-            <div style={styles.plusSign}>+</div>
-            <div style={styles.criteriaBox}>
-              <span style={{ fontSize: 22 }}>💬</span>
-              <p style={styles.criteriaText}>댓글</p>
-            </div>
-            <div style={styles.plusSign}>+</div>
-            <div style={styles.criteriaBox}>
-              <span style={{ fontSize: 22 }}>❤️</span>
-              <p style={styles.criteriaText}>좋아요</p>
-            </div>
-          </div>
-          <p style={styles.criteriaNote}>
-            ※ '조회수 + 댓글 + 좋아요' 수를 합산해서 1위~3위까지 시상
-          </p>
 
           {/* 시상 내역 */}
-          <p style={styles.sectionLabel}>🎁 시상 내역</p>
+          <p style={styles.sectionLabel}>🎁 시상 내용</p>
           <div style={styles.prizeList}>
             {/* 1등, 2등, 3등 가로 배열 */}
             <div style={styles.prizeGrid}>
               <div style={{ ...styles.prizeCol, ...styles.prizeGold }}>
                 <span style={styles.prizeIcon}>🥇</span>
-                <span style={{ ...styles.prizeRankCol, color: "#7a5800" }}>1등 (1명)</span>
+                <span style={{ ...styles.prizeRankCol, color: "#7a5800" }}>1등 (이예윤)</span>
                 <span style={{ ...styles.prizeAmountCol, color: "#7a5800" }}>상금 10만원</span>
               </div>
               <div style={{ ...styles.prizeCol, ...styles.prizeSilver }}>
                 <span style={styles.prizeIcon}>🥈</span>
-                <span style={{ ...styles.prizeRankCol, color: "#4f5b66" }}>2등 (1명)</span>
+                <span style={{ ...styles.prizeRankCol, color: "#4f5b66" }}>2등 (이혜정)</span>
                 <span style={{ ...styles.prizeAmountCol, color: "#4f5b66" }}>상금 5만원</span>
               </div>
               <div style={{ ...styles.prizeCol, ...styles.prizeBronze }}>
                 <span style={styles.prizeIcon}>🥉</span>
-                <span style={{ ...styles.prizeRankCol, color: "#7e5233" }}>3등 (1명)</span>
+                <span style={{ ...styles.prizeRankCol, color: "#7e5233" }}>3등 (최수정)</span>
                 <span style={{ ...styles.prizeAmountCol, color: "#7e5233" }}>상금 3만원</span>
               </div>
             </div>
-            {/* 참가자 전원 */}
+            {/* 참가상 정보 */}
             <div style={{ ...styles.prizeRow, ...styles.prizeAll, flexDirection: "column", alignItems: "stretch", gap: 4 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <span style={styles.prizeIcon}>🎀</span>
                 <span style={{ ...styles.prizeRank, color: "#2d6e2d" }}>
-                  작품 등록자 전원
+                  아티스트 참가상 (6명)
                 </span>
                 <span style={{ ...styles.prizeAmount, color: "#2d6e2d" }}>
                   편의점 상품권 5천원
                 </span>
               </div>
-              <div style={{ fontSize: 10, color: "#558b2f", paddingLeft: 28, lineHeight: 1.4 }}>
-                (시상자 제외, 작품 수와 상관없이 작품 등록자에게 상품권 1개만 지급)
-              </div>
             </div>
           </div>
 
-          {/* 참여 방법 */}
-          <div style={styles.infoBox}>
-            💡 <strong>참여 방법</strong> : 갤러리를 둘러보며 마음에 드는 작품에{" "}
-            <strong>좋아요</strong>를 누르고 <strong>응원 댓글</strong>을 남겨주세요!
-            여러분의 관심이 청소년 창작자들에게 큰 힘이 됩니다 🙌
-          </div>
-
           {/* 버튼 및 하단 링크 */}
-          <button onClick={handleJustClose} style={styles.ctaButton}>
-            🎨 갤러리 구경하러 가기
+          <button onClick={() => { navigate('/awards'); setVisible(false); }} style={styles.ctaButton}>
+            🏆 수상작 발표 보러가기
           </button>
           
           <div style={styles.footerLinks}>

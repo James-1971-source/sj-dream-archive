@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import AdminDashboard from './pages/AdminDashboard';
 import EditWork from './pages/EditWork';
+import Awards from './pages/Awards';
 import './styles/variables.css';
 import './App.css';
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/edit/:id" element={<EditWork />} />
+          <Route path="/awards" element={<Awards />} />
         </Routes>
       </main>
       <Footer />

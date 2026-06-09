@@ -121,6 +121,7 @@ const Navbar = () => {
           <ul className="nav-links">
             <li><NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>갤러리</NavLink></li>
             <li><NavLink to="/upload" className={({ isActive }) => isActive ? 'active' : ''}>작품 올리기</NavLink></li>
+            <li><NavLink to="/awards" className={({ isActive }) => isActive ? 'active' : ''}>🏆 수상작 발표</NavLink></li>
             <li><NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>소개</NavLink></li>
           </ul>
         </div>
