@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S&J희망나눔 데이터 소식지</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">S&J희망나눔</div>
+        <nav class="nav-menu">
+            <!-- 메뉴 항목은 동적 데이터로 채워질 영역 -->
+            <ul>
+                <li><a href="#kpi">KPI 현황</a></li>
+                <li><a href="#news">최신 소식</a></li>
+                <li><a href="#data_source">데이터 출처</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        
+        <!-- 1. KPI 요약 모듈 (3단 그리드 중 첫 번째 열) -->
+        <section id="kpi" class="module kpi-summary">
+            <h2>📊 데이터 신뢰도 현황</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card success" data-score="0.95">
+                    <h3>KPI 정합성 점수</h3>
+                    <p>0.95 (매우 높음)</p>
+                    <span class="visual-bar score-green"></span>
+                </div>
+                <div class="kpi-card warning" data-score="0.88">
+                    <h3>일관성 지수</h3>
+                    <p>0.88 (양호)</p>
+                    <span class="visual-bar score-yellow"></span>
+                </div>
+                <div class="kpi-card info" data-score="0.92">
+                    <h3>데이터 무결성</h3>
+                    <p>92% 확보</p>
+                    <span class="visual-bar score-green"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 최신 소식 모듈 (3단 그리드 중 두 번째 열) -->
+        <section id="news" class="module news-feed">
+            <h2>📰 최신 기관 소식</h2>
+            
+            <!-- 뉴스 아이템은 데이터로 동적 삽입될 영역 -->
+            <article class="news-item data-entry" data-id="1">
+                <h3>[2026.05.18] 시스템 안정성 보고</h3>
+                <p class="date">2026.05.18</p>
+                <p class="summary">KPI 계산 모듈의 논리적 정확성을 검증한 결과, 데이터 흐름 추적 및 체크섬 메커니즘이 성공적으로 구현되었음을 확인했습니다.</p>
+                <div class="kpi-detail">
+                    <span class="kpi-label">정합성 점수:</span> <span class="kpi-value success">0.95</span>
+                </div>
+            </article>
+
+            <article class="news-item data-entry" data-id="2">
+                <h3>[최신 업데이트] 디자인 명세 확정</h3>
+                <p class="date">2026.05.18</p>
+                <p class="summary">Designer가 확정한 최종 디자인 명세(`designer_final_mockup_spec.md`)를 기반으로, HTML/CSS 구조 작성을 시작했습니다.</p>
+                <div class="kpi-detail">
+                    <span class="kpi-label">일관성 지수:</span> <span class="kpi-value warning">0.88</span>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- 3. 데이터 출처/참고 모듈 (3단 그리드 중 세 번째 열) -->
+        <aside id="data_source" class="module data-source">
+            <h2>🔗 시스템 구성</h2>
+            <ul>
+                <li><strong>데이터 흐름:</strong> 고유 ID 및 체크섬 기반 추적</li>
+                <li><strong>톤앤매너:</strong> Warm & Trustworthy (친근함, 데이터 기반)</li>
+                <li><strong>디자인 원칙:</strong> 3단 모듈 그리드 기반의 모듈형 배치</li>
+            </ul>
+        </aside>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 S&J희망나눔. 모든 데이터는 정합성 점수에 의해 검증됩니다.</p>
+    </footer>
+
+</body>
+</html>

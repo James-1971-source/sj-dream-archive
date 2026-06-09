@@ -1,0 +1,13 @@
+D:\DIAMOND\Documents\Antigravity_Apps\SJ_DATABASE
+: S&J Dream Archive 웹페이지 구현 소스
+2026년 3월 완료
+s&j홈페이지에서 접속 가능
+
+웹주소 : https://sj-dream-archive.vercel.app/
+안티그래비티로 구현
+
+깃허브 저장소 : https://github.com/James-1971-source/sj-dream-archive
+데이터베이스 : Supabase 사용 : SJ-Dream-Archive https://supabase.com/dashboard/project/rehcbmvfpzndublajsfr/sql/81390db3-a4ee-4a76-809b-7e7ef8ab6a16?method=github
+
+배포 : Vercel 에 의한 자동배포. 깃허브 소스 수정되면 Vercel에서 감지해서 자동 배포
+https://vercel.com/jamesyuns-projects/sj-dream-archive
