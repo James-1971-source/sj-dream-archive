@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Sparkles, Target, Users, BookOpen, Music } from 'lucide-react';
+import SEO from '../components/SEO';
 import './About.css';
 
 const About = () => {
   return (
     <div className="about-page">
+      <SEO
+        title="S&J드림아카이브 소개"
+        description="S&J드림아카이브는 S&J희망나눔이 운영하는 청소년 창작 지원 플랫폼입니다. 청소년들이 자신의 작품을 세상에 선보이고 서로 응원하는 공간입니다."
+        url="/about"
+      />
       <div className="about-hero">
         <div className="container">
           <span className="badge">ABOUT US</span>
