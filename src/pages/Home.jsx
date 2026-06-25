@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import SEO from '../components/SEO';
 import CategoryFilter from '../components/gallery/CategoryFilter';
 import WorkCard from '../components/gallery/WorkCard';
 import './Home.css';
@@ -73,6 +74,11 @@ const Home = () => {
 
   return (
     <div className="home-page">
+      <SEO
+        title="S&J드림아카이브 | 청소년 창작 작품 아카이브"
+        description="S&J희망나눔이 운영하는 청소년 창작 플랫폼입니다. 음악, 웹툰, 영상, 이미지, 전자책 등 청소년들의 다양한 창작 작품을 만나보세요."
+        url="/"
+      />
       <header className="hero-section">
         <div className="container hero-content">
           <span className="badge">ARCHIVE</span>
