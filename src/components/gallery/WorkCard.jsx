@@ -46,7 +46,7 @@ const WorkCard = ({ work }) => {
   };
 
   return (
-    <div className="work-card" onClick={() => navigate(`/work/${work.id}`)}>
+    <div className="work-card" onClick={() => navigate(`/works/${work.id}`)}>
       <div className="card-thumb">
         {renderThumbnail()}
         <span className="type-badge" style={{ backgroundColor: getBadgeColor(work.category) }}>

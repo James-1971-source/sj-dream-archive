@@ -26,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/works/:id" element={<Detail />} />
           <Route path="/work/:id" element={<Detail />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
@@ -41,4 +42,3 @@ function App() {
 }
 
 export default App;
-
